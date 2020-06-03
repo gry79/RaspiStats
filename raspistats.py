@@ -16,7 +16,7 @@ def get_temp():
 def publish_message(topic, message):
     print("Publishing to MQTT topic: " + topic)
     print("Message: " + message)
-    publish.single(topic, message, 0, True, hostname="nodered.local")
+    publish.single(topic, message, 0, False, hostname="nodered.local")
 
 hostname = os.popen("hostname").read().strip()
 loadavg = check_output(["cat","/proc/loadavg"]).decode("UTF-8").split()
