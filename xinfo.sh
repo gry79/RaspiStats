@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-MODEL=`cat /proc/device-tree/model`
+MODEL=$(tr -d '\0' </proc/device-tree/model)
 
-# Datum & Uhrzeit
+# Datum und Uhrzeit
 DATUM=`date +"%A, %e %B %Y"`
 
 # Hostname
@@ -41,7 +41,6 @@ echo -e "\033[1;32m   .~~.   .~~.    \033[1;36m$DATUM
 \033[1;31m( : '~'.~.'~' : ) \033[0;37mStorage     : Total: $DISK1 | Used: $DISK2 | Free: $DISK3
 \033[1;31m ~ .~ (   ) ~. ~  \033[0;37mRAM (MB)    : Total: $RAM1 | Used: $RAM2 | Free: $RAM3 | Swap: $RAM4
 \033[1;31m  (  : '~' :  )   \033[0;37mIP-Address  : \033[1;35m$IP\033[0;37m
-\033[1;31m   '~ .~~~. ~'    \033[0;37mServices    : -
-\033[1;31m       '~'        \033[0;37m              
-\033[1;31m                  \033[0;37m              
+\033[1;31m   '~ .~~~. ~'    \033[0;37m
+\033[1;31m       '~'        \033[0;37m
 \033[m"
