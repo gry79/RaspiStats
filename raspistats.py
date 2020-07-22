@@ -22,6 +22,7 @@ hostname = os.popen("hostname").read().strip()
 loadavg = check_output(["cat","/proc/loadavg"]).decode("UTF-8").split()
 ipaddr = check_output(["/sbin/ifconfig","eth0"]).decode("UTF-8").split()[5]
 free = os.popen("free -w | grep Mem").read().split()
+throttled = check_output(["/opt/vc/bin/vcgencmd","get_throttled"]).decode("UTF-8").strip().split("=")[1]
 
 now = datetime.now()
 date = now.strftime("%d.%m.%Y")
@@ -34,6 +35,7 @@ jsonData['load_15m'] = float(loadavg[2])
 jsonData['eth0'] = ipaddr
 jsonData['mem_total'] = int(free[1])
 jsonData['mem_used'] = int(free[2])
+jsonData['throttled'] = int(throttled, 16)
 jsonData['date_now'] = date
 jsonData['time_now'] = time
 
